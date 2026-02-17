@@ -252,16 +252,40 @@ with col_summary:
         
         # Download
         if st.session_state.current_q >= len(QUESTIONS):
-            summary_text = "BIGIN CRM PROPOSAL SUMMARY\n" + "="*50 + "\n\n"
-            for key, value in st.session_state.data.items():
-                label = key.replace('_', ' ').title()
-                val = ', '.join(value) if isinstance(value, list) else value
-                summary_text += f"{label}: {val}\n"
+            # Generate summary text
+            summary_text = "="*60 + "\n"
+            summary_text += "BIGIN CRM PROPOSAL SUMMARY\n"
+            summary_text += "="*60 + "\n\n"
+            
+            summary_text += f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}\n"
+            summary_text += f"Company: {st.session_state.data.get('company_name', 'N/A')}\n\n"
+            
+            for phase in range(1, 8):
+                phase_data = {k: v for k, v in st.session_state.data.items() if any(q["key"] == k and q["phase"] == phase for q in QUESTIONS)}
+                if phase_data:
+                    summary_text += "-"*60 + "\n"
+                    summary_text += f"PHASE {phase}: {PHASE_NAMES[phase].upper()}\n"
+                    summary_text += "-"*60 + "\n"
+                    for key, value in phase_data.items():
+                        label = key.replace('_', ' ').title()
+                        val = ', '.join(value) if isinstance(value, list) else str(value)
+                        summary_text += f"{label}: {val}\n"
+                    summary_text += "\n"
+            
+            summary_text += "="*60 + "\n"
+            summary_text += "END OF SUMMARY\n"
+            summary_text += "="*60 + "\n"
+            
+            # Safe filename
+            company = st.session_state.data.get('company_name', 'Client')
+            safe_company = "".join(c for c in company if c.isalnum() or c in (' ', '-', '_')).strip()
+            safe_company = safe_company.replace(' ', '_')
+            filename = f"Bigin_CRM_Proposal_{safe_company}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
             
             st.download_button(
                 "📥 Download Summary",
-                data=summary_text,
-                file_name=f"CRM_Proposal_{st.session_state.data.get('company_name', 'Client')}_{datetime.now().strftime('%Y%m%d')}.txt",
+                data=summary_text.encode('utf-8'),
+                file_name=filename,
                 mime="text/plain",
                 type="primary",
                 use_container_width=True
