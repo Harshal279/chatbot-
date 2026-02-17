@@ -11,7 +11,7 @@ load_dotenv()
 # Page Configuration
 st.set_page_config(
     page_title="Bigin CRM Proposal Assistant",
-    page_icon="💼",
+    page_icon="",
     layout="wide"
 )
 
@@ -154,7 +154,7 @@ with col1:
     st.markdown(f"<div class='phase-badge'>Phase {current_phase}/7: {PHASE_NAMES[current_phase]}</div>", unsafe_allow_html=True)
 
 with col2:
-    with st.expander("⚙️ AI Settings"):
+    with st.expander("AI Settings"):
         use_ai = st.checkbox("Enable AI Summaries", value=st.session_state.use_ai)
         st.session_state.use_ai = use_ai
         if use_ai:
@@ -169,7 +169,7 @@ st.progress(progress)
 col_chat, col_summary = st.columns([2, 1])
 
 with col_chat:
-    st.markdown("### 💬 Conversation")
+    st.markdown("###Conversation")
     
     # Display messages
     for msg in st.session_state.messages:
@@ -283,7 +283,7 @@ with col_summary:
             filename = f"Bigin_CRM_Proposal_{safe_company}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
             
             st.download_button(
-                "📥 Download Summary",
+                "Download Summary",
                 data=summary_text.encode('utf-8'),
                 file_name=filename,
                 mime="text/plain",
@@ -291,7 +291,7 @@ with col_summary:
                 use_container_width=True
             )
     
-    if st.button("🔄 Start Over", use_container_width=True):
+    if st.button("Start Over", use_container_width=True):
         for key in list(st.session_state.keys()):
             if key not in ['api_key', 'use_ai']:
                 del st.session_state[key]
@@ -299,3 +299,4 @@ with col_summary:
 
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: white;'>💼 Bigin CRM Proposal Assistant • Powered by AI</p>", unsafe_allow_html=True)
+
