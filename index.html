@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigin CRM Proposal Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">🤖</div>
+                    <div>
+                        <h1>Bigin CRM Proposal Assistant</h1>
+                        <p class="subtitle">Let's build your perfect CRM proposal together</p>
+                    </div>
+                </div>
+                <div class="progress-indicator">
+                    <span class="phase-text">Phase <span id="current-phase">1</span>/7</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chat-container">
+            <div class="messages" id="messages"></div>
+        </div>
+
+        <div class="input-container" id="input-container">
+            <div class="typing-indicator" id="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="input-area" id="input-area" style="display: none;">
+                <input type="text" id="user-input" placeholder="Type your answer..." autocomplete="off">
+                <button id="send-btn" class="send-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="summary-panel" id="summary-panel">
+            <div class="summary-header">
+                <h3>📋 Proposal Summary</h3>
+                <button class="toggle-summary" id="toggle-summary">−</button>
+            </div>
+            <div class="summary-content" id="summary-content">
+                <p class="empty-state">Information will appear here as we progress...</p>
+            </div>
+            <button class="download-btn" id="download-btn" style="display: none;">
+                📥 Download Summary
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
