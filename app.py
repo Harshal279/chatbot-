@@ -184,7 +184,7 @@ with col_chat:
         # Input based on type
         if q["type"] == "text":
             user_input = st.text_area("Your answer:", key=f"input_{st.session_state.current_q}", height=100)
-            if st.button("Send ✉️", type="primary"):
+            if st.button("Send", type="primary"):
                 if user_input.strip():
                     st.session_state.messages.append({"role": "user", "content": user_input})
                     st.session_state.data[q["key"]] = user_input
@@ -194,7 +194,7 @@ with col_chat:
                         phase_data = {k: v for k, v in st.session_state.data.items() if any(qq["key"] == k and qq["phase"] == q["phase"] for qq in QUESTIONS)}
                         summary = get_ai_summary(phase_data)
                         if summary:
-                            st.session_state.messages.append({"role": "assistant", "content": f"✅ {summary}"})
+                            st.session_state.messages.append({"role": "assistant", "content": f"{summary}"})
                     
                     st.session_state.current_q += 1
                     st.rerun()
@@ -233,10 +233,10 @@ with col_chat:
                             st.rerun()
     else:
         # Complete
-        st.markdown("<div class='chat-message assistant'><strong>🎉 Complete!</strong> All information gathered. Download your summary from the sidebar.</div>", unsafe_allow_html=True)
+        st.markdown("<div class='chat-message assistant'><strong>Complete!</strong> All information gathered. Download your summary from the sidebar.</div>", unsafe_allow_html=True)
 
 with col_summary:
-    st.markdown("### 📋 Summary")
+    st.markdown("###Summary")
     
     if st.session_state.data:
         for phase in range(1, 8):
@@ -298,6 +298,7 @@ with col_summary:
         st.rerun()
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: white;'>💼 Bigin CRM Proposal Assistant • Powered by AI</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: white;'></p>", unsafe_allow_html=True)
+
 
 
