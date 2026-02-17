@@ -149,7 +149,7 @@ def get_ai_summary(phase_data):
 # Header
 col1, col2 = st.columns([3, 1])
 with col1:
-    st.markdown("<h1 style='color: white;'>💼 Bigin CRM Proposal Assistant</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: white;'>Bigin CRM Proposal Assistant</h1>", unsafe_allow_html=True)
     current_phase = QUESTIONS[st.session_state.current_q]["phase"] if st.session_state.current_q < len(QUESTIONS) else 7
     st.markdown(f"<div class='phase-badge'>Phase {current_phase}/7: {PHASE_NAMES[current_phase]}</div>", unsafe_allow_html=True)
 
@@ -299,4 +299,5 @@ with col_summary:
 
 st.markdown("---")
 st.markdown("<p style='text-align: center; color: white;'>💼 Bigin CRM Proposal Assistant • Powered by AI</p>", unsafe_allow_html=True)
+
 
